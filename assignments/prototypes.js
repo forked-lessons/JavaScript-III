@@ -63,7 +63,7 @@ CharacterStats.prototype.takeDamage = function () {
   * should inherit takeDamage() from CharacterStats
 */
 
-//Humaniod methods here
+//Humaniod Constructor here
 
 function Humanoid(humanoidAttributes) {
   this.team = humanoidAttributes.team;
@@ -103,6 +103,7 @@ const mage = new Humanoid({
   team: 'Mage Guild',
   weapons: [
     'Staff of Shamalama',
+    'another wep'
   ],
   language: 'Common Tongue',
 });
@@ -156,21 +157,56 @@ const archer = new Humanoid({
 // Stretch task: 
 // * Create Villain and Hero constructor functions that inherit from the Humanoid constructor function.  
 
-//Villan = Clutter
+//Villain = Clutter
+//Constructor Function
+
+function Villain(villainAttributes) {
+  this.opponentHealth = villainAttributes.opponentHealth;
+  this.sentimentalAttack = villainAttributes.sentimentalAttack;
+  CharacterStats.call(this, villainAttributes);
+}
+
+//Inheritance
+Villain.prototype = Object.create(Humanoid.prototype);
+
+// METHODS
+
+Villain.prototype.attack = function () {
+  this.opponentHealth -= 10;
+  return `The Clutter overwhelms you as you look through pictures of your childhood family vacations.`;
+};
+
 
 //Hero = Marie Kondo
+//Constructor Function
 
+function Hero(heroAttributes) {
+  this.opponentHealth = heroAttributes.opponentHealth;
+  CharacterStats.call(this, heroAttributes);
+}
+
+//Inheritance
+Hero.prototype = Object.create(Humanoid.prototype);
+
+// METHODS
+
+Hero.prototype.joy = function () {
+  this.opponentHealth -= 10;
+  return `Does this item bring you joy?`;
+};
+
+Hero.prototype.letItGo = function () {
+  this.opponentHealth -= 40;
+  return `Thank it and let it go.`;
+};
 
 // * Give the Hero and Villains different methods that could be used to remove health points from objects which could result in destruction if health gets to 0 or drops below 0;
 //METHODS HERE
 
-//does this item bring you joy?
-//thank it and let it go.
-
 // * Create two new objects, one a villain and one a hero and fight it out with methods!
 
 //Marie Kondo
-const minimalist = new Humanoid({
+const minimalist = new Hero({
   createdAt: new Date(),
   dimensions: {
     length: 1,
@@ -178,17 +214,18 @@ const minimalist = new Humanoid({
     height: 1,
   },
   healthPoints: 100,
-  name: 'Marie Knodo',
+  opponentHealth: 50,
+  name: 'Marie Kondo',
   team: 'Clean Sweep',
   weapons: [
     'Joy',
-    'Thank it and let it go.',
+    ' Thank it and let it go.',
   ],
   language: 'Japanese',
 });
 
 //Clutter
-const clutter = new Humanoid({
+const clutter = new Villain({
   createdAt: new Date(),
   dimensions: {
     length: 10,
@@ -196,11 +233,23 @@ const clutter = new Humanoid({
     height: 10,
   },
   healthPoints: 50,
+  opponentHealth: 100,
   name: 'A heap of Junk',
-  team: 'Horder',
+  team: 'Hoarder',
   weapons: [
     'Oh thats where that was',
-    'Sentimental Value',
+    ' Sentimental Value',
   ],
   language: 'Earthly Attachment',
 });
+
+console.log("Lets get ready to rumbleeeeeee!!!!!")
+console.log(`Today ${minimalist.name} will take on a new home filled with ${clutter.name}, will she thank it and let it go, or will it overwhelm her?`);
+console.log(clutter.attack())
+console.log(`${minimalist.name} has been overwhelmed, ${minimalist.name} now has ${minimalist.opponentHealth} hp.`);
+console.log(minimalist.joy());
+console.log(`${clutter.name} has been reduced, ${clutter.name} now has ${clutter.opponentHealth} hp.`);
+console.log(minimalist.letItGo());
+console.log(`${clutter.name} has been reduced, ${clutter.name} now has ${minimalist.opponentHealth} hp.`);
+
+console.log(`${clutter.weapons}`);
