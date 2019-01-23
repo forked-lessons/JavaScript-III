@@ -248,8 +248,8 @@ console.log(`Today ${minimalist.name} will take on a new home filled with ${clut
 console.log(clutter.attack())
 console.log(`${minimalist.name} has been overwhelmed, ${minimalist.name} now has ${minimalist.opponentHealth} hp.`);
 console.log(minimalist.joy());
-console.log(`${clutter.name} has been reduced, ${clutter.name} now has ${clutter.opponentHealth} hp.`);
+console.log(`${clutter.name}\'s hp has been reduced, ${clutter.name} now has ${clutter.opponentHealth} hp.`);
 console.log(minimalist.letItGo());
-console.log(`${clutter.name} has been reduced, ${clutter.name} now has ${minimalist.opponentHealth} hp.`);
+console.log(`${clutter.name}\'s hp has been reduced, ${clutter.name} now has ${minimalist.opponentHealth} hp.`);
 
 console.log(`${clutter.weapons}`);
