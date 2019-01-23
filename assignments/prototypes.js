@@ -247,9 +247,9 @@ console.log("Lets get ready to rumbleeeeeee!!!!!")
 console.log(`Today ${minimalist.name} will take on a new home filled with ${clutter.name}, will she thank it and let it go, or will it overwhelm her?`);
 console.log(clutter.attack())
 console.log(`${minimalist.name} has been overwhelmed, ${minimalist.name} now has ${minimalist.opponentHealth} hp.`);
-console.log(minimalist.joy());
+console.log(`${minimalist.name} looks at the ${clutter.name} and uses: ${minimalist.joy()}`);
 console.log(`${clutter.name}\'s hp has been reduced, ${clutter.name} now has ${clutter.opponentHealth} hp.`);
-console.log(minimalist.letItGo());
-console.log(`${clutter.name}\'s hp has been reduced, ${clutter.name} now has ${minimalist.opponentHealth} hp.`);
-
-console.log(`${clutter.weapons}`);
+console.log(`${minimalist.name} prepares her finishing move.`)
+console.log(`${minimalist.name} looks at ${clutter.name} and uses: ${minimalist.letItGo()}`);
+console.log(`The attack is SUPER EFFECTIVE! ${clutter.name}\'s hp has been reduced, ${clutter.name} now has ${minimalist.opponentHealth} hp.`);
+console.log(`${clutter.name} has been defeated. ${minimalist.name} is victorious in tidying up another home! `)
