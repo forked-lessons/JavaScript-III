@@ -153,22 +153,54 @@ const archer = new Humanoid({
 // console.log(swordsman.destroy()); // Sir Mustachio was removed from the game.
 
 
-  // Stretch task: 
-  // * Create Villain and Hero constructor functions that inherit from the Humanoid constructor function.  
+// Stretch task: 
+// * Create Villain and Hero constructor functions that inherit from the Humanoid constructor function.  
 
-  //Villan = Clutter
+//Villan = Clutter
 
-  //Hero = Marie Kondo
+//Hero = Marie Kondo
 
 
-  // * Give the Hero and Villains different methods that could be used to remove health points from objects which could result in destruction if health gets to 0 or drops below 0;
+// * Give the Hero and Villains different methods that could be used to remove health points from objects which could result in destruction if health gets to 0 or drops below 0;
+//METHODS HERE
 
-  //methods
-  //does this item bring you joy?
-  //thank it and let it go.
+//does this item bring you joy?
+//thank it and let it go.
 
-  // * Create two new objects, one a villain and one a hero and fight it out with methods!
+// * Create two new objects, one a villain and one a hero and fight it out with methods!
 
-  //Marie Kondo
+//Marie Kondo
+const minimalist = new Humanoid({
+  createdAt: new Date(),
+  dimensions: {
+    length: 1,
+    width: 1,
+    height: 1,
+  },
+  healthPoints: 100,
+  name: 'Marie Knodo',
+  team: 'Clean Sweep',
+  weapons: [
+    'Joy',
+    'Thank it and let it go.',
+  ],
+  language: 'Japanese',
+});
 
-  //Clutter
+//Clutter
+const clutter = new Humanoid({
+  createdAt: new Date(),
+  dimensions: {
+    length: 10,
+    width: 10,
+    height: 10,
+  },
+  healthPoints: 50,
+  name: 'A heap of Junk',
+  team: 'Horder',
+  weapons: [
+    'Oh thats where that was',
+    'Sentimental Value',
+  ],
+  language: 'Earthly Attachment',
+});
