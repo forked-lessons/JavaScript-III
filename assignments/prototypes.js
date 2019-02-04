@@ -25,7 +25,7 @@ function GameObject(GameObjectAttributes) {
 //prototype methods here
 
 GameObject.prototype.destroy = function () {
-  return ('Object was removed from the game.');
+  return (`${this.name} was removed from the game.`);
 }
 
 /*
@@ -63,7 +63,7 @@ CharacterStats.prototype.takeDamage = function () {
   * should inherit takeDamage() from CharacterStats
 */
 
-//Humaniod methods here
+//Humaniod Constructor here
 
 function Humanoid(humanoidAttributes) {
   this.team = humanoidAttributes.team;
@@ -103,6 +103,7 @@ const mage = new Humanoid({
   team: 'Mage Guild',
   weapons: [
     'Staff of Shamalama',
+    'another wep'
   ],
   language: 'Common Tongue',
 });
@@ -141,34 +142,114 @@ const archer = new Humanoid({
   language: 'Elvish',
 });
 
-// console.log(mage.createdAt); // Today's date
-// console.log(archer.dimensions); // { length: 1, width: 2, height: 4 }
-// console.log(swordsman.healthPoints); // 15
-// console.log(mage.name); // Bruce
-// console.log(swordsman.team); // The Round Table
-// console.log(mage.weapons); // Staff of Shamalama
-// console.log(archer.language); // Elvish
-// console.log(archer.greet()); // Lilith offers a greeting in Elvish.
-// console.log(mage.takeDamage()); // Bruce took damage.
-// console.log(swordsman.destroy()); // Sir Mustachio was removed from the game.
+console.log(mage.createdAt); // Today's date
+console.log(archer.dimensions); // { length: 1, width: 2, height: 4 }
+console.log(swordsman.healthPoints); // 15
+console.log(mage.name); // Bruce
+console.log(swordsman.team); // The Round Table
+console.log(mage.weapons); // Staff of Shamalama
+console.log(archer.language); // Elvish
+console.log(archer.greet()); // Lilith offers a greeting in Elvish.
+console.log(mage.takeDamage()); // Bruce took damage.
+console.log(swordsman.destroy()); // Sir Mustachio was removed from the game.
 
 
-  // Stretch task: 
-  // * Create Villain and Hero constructor functions that inherit from the Humanoid constructor function.  
+// Stretch task: 
+// * Create Villain and Hero constructor functions that inherit from the Humanoid constructor function.  
 
-  //Villan = Clutter
+//Villain = Clutter
+//Constructor Function
 
-  //Hero = Marie Kondo
+function Villain(villainAttributes) {
+  this.opponentHealth = villainAttributes.opponentHealth;
+  this.sentimentalAttack = villainAttributes.sentimentalAttack;
+  CharacterStats.call(this, villainAttributes);
+}
+
+//Inheritance
+Villain.prototype = Object.create(Humanoid.prototype);
+
+// METHODS
+
+Villain.prototype.attack = function () {
+  this.opponentHealth -= 10;
+  return `The Clutter overwhelms you as you look through pictures of your childhood family vacations.`;
+};
 
 
-  // * Give the Hero and Villains different methods that could be used to remove health points from objects which could result in destruction if health gets to 0 or drops below 0;
+//Hero = Marie Kondo
+//Constructor Function
 
-  //methods
-  //does this item bring you joy?
-  //thank it and let it go.
+function Hero(heroAttributes) {
+  this.opponentHealth = heroAttributes.opponentHealth;
+  CharacterStats.call(this, heroAttributes);
+}
 
-  // * Create two new objects, one a villain and one a hero and fight it out with methods!
+//Inheritance
+Hero.prototype = Object.create(Humanoid.prototype);
 
-  //Marie Kondo
+// METHODS
 
-  //Clutter
+Hero.prototype.joy = function () {
+  this.opponentHealth -= 10;
+  return `Does this item bring you joy?`;
+};
+
+Hero.prototype.letItGo = function () {
+  this.opponentHealth -= 40;
+  return `Thank it and let it go.`;
+};
+
+// * Give the Hero and Villains different methods that could be used to remove health points from objects which could result in destruction if health gets to 0 or drops below 0;
+//METHODS HERE
+
+// * Create two new objects, one a villain and one a hero and fight it out with methods!
+
+//Marie Kondo
+const minimalist = new Hero({
+  createdAt: new Date(),
+  dimensions: {
+    length: 1,
+    width: 1,
+    height: 1,
+  },
+  healthPoints: 100,
+  opponentHealth: 50,
+  name: 'Marie Kondo',
+  team: 'Clean Sweep',
+  weapons: [
+    'Joy',
+    ' Thank it and let it go.',
+  ],
+  language: 'Japanese',
+});
+
+//Clutter
+const clutter = new Villain({
+  createdAt: new Date(),
+  dimensions: {
+    length: 10,
+    width: 10,
+    height: 10,
+  },
+  healthPoints: 50,
+  opponentHealth: 100,
+  name: 'A heap of Junk',
+  team: 'Hoarder',
+  weapons: [
+    'Oh thats where that was',
+    ' Sentimental Value',
+  ],
+  language: 'Earthly Attachment',
+});
+
+console.log("Lets get ready to rumbleeeeeee!!!!!")
+console.log(`Today ${minimalist.name} will take on a new home filled with ${clutter.name}, will she thank it and let it go, or will it overwhelm her?`);
+console.log(clutter.attack())
+console.log(`${minimalist.name} has been overwhelmed, ${minimalist.name} now has ${minimalist.opponentHealth} hp.`);
+console.log(`${minimalist.name} looks at the ${clutter.name} and uses: ${minimalist.joy()}`);
+console.log(`${clutter.name}\'s hp has been reduced, ${clutter.name} now has ${clutter.opponentHealth} hp.`);
+console.log(`${minimalist.name} prepares her finishing move.`)
+console.log(`${minimalist.name} looks at ${clutter.name} and uses: ${minimalist.letItGo()}`);
+console.log(`The attack is SUPER EFFECTIVE! ${clutter.name}\'s hp has been reduced, ${clutter.name} now has ${minimalist.opponentHealth} hp.`);
+console.log(`${clutter.name} has been defeated. ${minimalist.name} is victorious in tidying up another home! `)
